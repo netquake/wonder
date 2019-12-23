@@ -9,4 +9,5 @@ $ sudo chmod +x /usr/local/bin/ve
 $ ve pip install -r requirements.txt
 ```
 
+Doc: // https://www.osgeo.cn/scrapy/intro/tutorial.html
 
