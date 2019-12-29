@@ -6,6 +6,9 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class EstatePipeline(object):
+class PropertyInfoPipeline(object):
     def process_item(self, item, spider):
+        print(type(item))
+        print(item.get('name'))
+        print(dict(item))
         return item

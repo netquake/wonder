@@ -1,5 +1,9 @@
 # Spider program for estate
 
+### Spider library support
+- Library: `scrapy`
+- URL: https://www.osgeo.cn/scrapy/intro/tutorial.html
+
 ## Install
 ```bash
 $ pip install virtualenv
@@ -9,5 +13,5 @@ $ sudo chmod +x /usr/local/bin/ve
 $ ve pip install -r requirements.txt
 ```
 
-Doc: // https://www.osgeo.cn/scrapy/intro/tutorial.html
-
+## Run & Test a spider
+`ve scrapy crawl property (spider name)`
