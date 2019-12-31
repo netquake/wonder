@@ -8,7 +8,6 @@
 
 class PropertyInfoPipeline(object):
     def process_item(self, item, spider):
-        print(type(item))
-        print(item.get('name'))
+        print('....................................')
         print(dict(item))
         return item

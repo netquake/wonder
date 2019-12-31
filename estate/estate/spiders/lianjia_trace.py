@@ -1,7 +1,7 @@
 from scrapy import Spider
-from scrapy.loader import ItemLoader
 
 from ..items import Property
+from ..items import PropertyLoader
 
 
 class PropertyInfoSpider(Spider):
@@ -18,36 +18,19 @@ class PropertyInfoSpider(Spider):
     ]
 
     def parse(self, response):
-        property_loader = ItemLoader(item=Property(), response=response)
-        sumary_loader = property_loader.nested_xpath('//div[@class="item"]')
-        sumary_loader.add_xpath('url', '//a[@class="img"]/@href')
-        sumary_loader.add_xpath('name', '//a[@class="title"]/text()')
-        # sumary_loader.add_xpath('region', '//div[@class="info"]')[0].re('[\u4e00-\u9fa50-9. ]+')
-        # sumary_loader.add_xpath('rooms', '//div[@class="info"]')[0].re('[\u4e00-\u9fa50-9. ]+')
-        # sumary_loader.add_xpath('area', '//div[@class="info"]')[0].re('[\u4e00-\u9fa50-9. ]+')
-        # sumary_loader.add_xpath('layout', '//div[@class="info"]')[0].re('[\u4e00-\u9fa50-9. ]+')
-        # sumary_loader.add_xpath('fixtures', '//div[@class="info"]')[0].re('[\u4e00-\u9fa50-9. ]+')
-        sumary_loader.add_xpath('tax', '//span[@class="taxfree"]/text()')
-        sumary_loader.add_xpath('price', '//div[@class="price"]/span/text()')
+        for property_summary in response.xpath('//div[@class="item"]'):
+            property_loader = PropertyLoader(item=Property(), selector=property_summary)
+            property_loader.add_xpath('url', './/a[@class="img"]/@href')
+            property_loader.add_xpath('name', './/a[@class="title"]/text()')
+            property_loader.add_xpath('region', './/div[@class="info"]', re='[\u4e00-\u9fa50-9. ]+')
+            property_loader.add_xpath('rooms', './/div[@class="info"]', re='[\u4e00-\u9fa50-9. ]+')
+            property_loader.add_xpath('area', './/div[@class="info"]', re='[\u4e00-\u9fa50-9. ]+')
+            property_loader.add_xpath('layout', './/div[@class="info"]', re='[\u4e00-\u9fa50-9. ]+')
+            property_loader.add_xpath('fixtures', './/div[@class="info"]', re='[\u4e00-\u9fa50-9. ]+')
+            property_loader.add_xpath('tax', './/span[@class="taxfree"]/text()')
+            property_loader.add_xpath('price', './/div[@class="price"]/span/text()')
 
-        yield property_loader.load_item()
-
-        # for property_summary in response.xpath('//div[@class="item"]'):
-        #     property_url = property_summary.xpath('//a[@class="img"]/@href').get()
-        #     property_name = property_summary.xpath('//a[@class="title"]/text()').get()
-        #     info = property_summary.xpath('//div[@class="info"]')[0].re('[\u4e00-\u9fa50-9. ]+')
-        #     property_region = info[1]
-        #     property_rooms = info[2]
-        #     property_area = info[3]
-        #     property_layout = info[4]
-        #     property_fixtures = info[5]
-        #     property_tax = property_summary.xpath('//span[@class="taxfree"]/text()').get()
-        #     property_price = property_summary.xpath('//div[@class="price"]/span/text()').get()
-        #     if property_price:
-        #         property_price = int(property_price) \
-        #             if property_price.isdecimal() else 0
-        #     else:
-        #         property_price = 0
+            yield property_loader.load_item()
 
 
         # for quote in response.css('div.quote'):
