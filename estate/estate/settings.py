@@ -39,10 +39,10 @@ ROBOTSTXT_OBEY = False
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+DEFAULT_REQUEST_HEADERS = {
+   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+   'Accept-Language': 'en',
+}
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
@@ -72,9 +72,9 @@ ITEM_PIPELINES = {
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
 # The initial download delay
-#AUTOTHROTTLE_START_DELAY = 5
+AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY = 60
+AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
 #AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
