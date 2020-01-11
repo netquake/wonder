@@ -6,15 +6,18 @@ from ..utils.regex_tool import RegexTool
 class PropertyInfoPipeline(object):
     def process_item(self, item, spider):
         """Store apartments info into table
-        'rooms': '3室2厅', 'layout': '南 北', 'fixtures': '精装'
         """
+        def get_room_number(s):
+            i = s.find('室')
+            return s[i-1:i] if i > 0 else 0
+
         new_apartment = ApartmentPrice(
             summary=item['name'],
             price=item['price'] // 100,
             area=RegexTool.read_float_from_string(item['area']),
-            decoration=0,
-            layout=0,
-            rooms=1,
+            decoration=ApartmentPrice.get_decoration_type_from_string(item['fixtures']),
+            layout=ApartmentPrice.get_layout_type_from_string(item['layout']),
+            rooms=get_room_number(item['rooms']),
             region=item['region'],
             detail_url=item['url']
         )

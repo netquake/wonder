@@ -1,5 +1,9 @@
 # Spider program for estate
 
+A spider engine for estate website. 
+Crawling the price data and other infomation into mysql.
+Analyze the data in mysql.
+
 ### Spider library support
 - Library: `scrapy`
 - URL: https://www.osgeo.cn/scrapy/intro/tutorial.html
