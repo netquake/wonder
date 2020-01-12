@@ -19,6 +19,7 @@ $ sudo curl -kL "https://raw.githubusercontent.com/erning/ve/master/ve" -o "/usr
 $ sudo chmod +x /usr/local/bin/ve
 $ ve pip install -r requirements.txt
 ```
+- Make sure the configuration of mysql (`ESTATE_DB_CONNECTION_CONFIG`) point to the database server.
 
 ## Commands:
 Work folder:            cd ./estate
