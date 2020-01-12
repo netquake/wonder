@@ -43,11 +43,16 @@ def get_price(value):
     return 0
 
 
+def strip_village_name(values):
+    return values[0].strip()
+
+
 class Property(Item):
     key_id = Field()
     url = Field()
     name = Field()
     source_type = Field()
+    village_name = Field(output_processor=strip_village_name)
     region = Field(output_processor=filter_region)
     rooms = Field(output_processor=filter_rooms)
     area = Field(output_processor=filter_area)

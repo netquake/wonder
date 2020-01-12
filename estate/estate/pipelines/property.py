@@ -15,6 +15,7 @@ class PropertyInfoPipeline(object):
             summary=item['name'],
             key_id=item['key_id'],
             source_type=item['source_type'],
+            village_name=item['village_name'],
             price=item['price'],
             area=RegexTool.read_float_from_string(item['area']),
             decoration=ApartmentPrice.get_decoration_type_from_string(item['fixtures']),

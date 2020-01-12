@@ -23,9 +23,10 @@ class ApartmentPrice(db.Model):
     TYPE_DECORATION_LUXURY = 4
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    key_id = Column(String(64), nullable=False, comment='key id of property record')
+    key_id = Column(String(64), nullable=False, index=True, comment='key id of property record')
     summary = Column(String(512), nullable=False, comment='brief description')
-    source_type = Column(SmallInteger, nullable=False, comment='0:unknow 1:Lianjia')
+    source_type = Column(SmallInteger, nullable=False, index=True, comment='0:unknow 1:Lianjia')
+    village_name = Column(String(128), nullable=True, index=True, comment='XiaoQu Name')
     price = Column(Integer, nullable=False, comment='RMB(Wan Yuan)')
     area = Column(Float, nullable=False)
     decoration = Column(SmallInteger, nullable=False, default=0, comment='0:unknow 1:blank 2:paperback 3:hardback 4:luxury')
