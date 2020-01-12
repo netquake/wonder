@@ -13,7 +13,9 @@ class PropertyInfoPipeline(object):
 
         new_apartment = ApartmentPrice(
             summary=item['name'],
-            price=item['price'] // 100,
+            key_id=item['key_id'],
+            source_type=item['source_type'],
+            price=item['price'],
             area=RegexTool.read_float_from_string(item['area']),
             decoration=ApartmentPrice.get_decoration_type_from_string(item['fixtures']),
             layout=ApartmentPrice.get_layout_type_from_string(item['layout']),

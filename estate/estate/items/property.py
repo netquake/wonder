@@ -44,8 +44,10 @@ def get_price(value):
 
 
 class Property(Item):
+    key_id = Field()
     url = Field()
     name = Field()
+    source_type = Field()
     region = Field(output_processor=filter_region)
     rooms = Field(output_processor=filter_rooms)
     area = Field(output_processor=filter_area)

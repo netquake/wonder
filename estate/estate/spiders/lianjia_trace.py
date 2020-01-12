@@ -4,7 +4,9 @@ from ..items import Property
 from ..items import PropertyLoader
 
 
-class PropertyInfoSpider(Spider):
+class PropertySummarySpider(Spider):
+    """Crawl the property summary list in `Search Pages`
+    """
     name = 'property'
     allowed_domains = ['sh.lianjia.com']
 
@@ -19,7 +21,11 @@ class PropertyInfoSpider(Spider):
 
     def parse(self, response):
         for property_summary in response.xpath('//div[@class="item"]'):
-            property_loader = PropertyLoader(item=Property(), selector=property_summary)
+            property_loader = PropertyLoader(
+                item=Property(source_type=1),
+                selector=property_summary
+            )
+            property_loader.add_xpath('key_id', './/a[@class="img"]/@data-housecode')
             property_loader.add_xpath('url', './/a[@class="img"]/@href')
             property_loader.add_xpath('name', './/a[@class="title"]/text()')
             property_loader.add_xpath('region', './/div[@class="info"]', re='[\u4e00-\u9fa50-9. ]+')
@@ -32,15 +38,28 @@ class PropertyInfoSpider(Spider):
 
             yield property_loader.load_item()
 
+        next_page_url = self.__get_next_page(response)
+        if not next_page_url:
+            return
 
-        # for quote in response.css('div.quote'):
-        #     yield {
-        #         'text': quote.css('span.text::text').get(),
-        #         'author': quote.css('small.author::text').get(),
-        #         'tags': quote.css('div.tags a.tag::text').getall(),
-        #     }
-        #
-        # next_page = response.css('li.next a::attr(href)').get()
-        # if next_page is not None:
-        #     next_page = response.urljoin(next_page)
-        #     yield response.follow(next_page, callback=self.parse)
+        yield response.follow(
+            next_page_url, callback=self.parse
+        )
+
+    def __get_next_page(self, response):
+        navigate_urls = response.xpath(
+            '//div[@class="pagination_group_a"]'
+        ).xpath('.//a/@href').getall()
+
+        over_current_url = False
+        for url in navigate_urls:
+            if url in response.url:
+                over_current_url = True
+                continue
+
+            if over_current_url:
+                return response.urljoin(
+                    url
+                )
+
+        return None
