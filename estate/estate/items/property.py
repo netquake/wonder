@@ -47,6 +47,13 @@ def strip_village_name(values):
     return values[0].strip()
 
 
+def get_tax_type(values):
+    if '满五' in values[0]:
+        return 1
+    else:
+        return 0
+
+
 class Property(Item):
     key_id = Field()
     url = Field()
@@ -58,6 +65,6 @@ class Property(Item):
     area = Field(output_processor=filter_area)
     layout = Field(output_processor=filter_layout)
     fixtures = Field(output_processor=filter_fixtures)
-    tax = Field()
+    tax = Field(output_processor=get_tax_type)
     price = Field(output_processor=get_price)
     # https://blog.csdn.net/zwq912318834/article/details/79530828

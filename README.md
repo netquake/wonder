@@ -1,8 +1,8 @@
 # Spider program for estate
 
-A spider engine for estate website. 
-Crawling the price data and other infomation into mysql.
-Analyze the data in mysql.
+- A spider engine for estate website. 
+- Crawling the price data and other infomation into mysql.
+- Analyze the data in mysql.
 
 ### Support estate websites:
 - Lianjia: `https://sh.lianjia.com`
@@ -31,3 +31,4 @@ Work folder:            cd ./estate
 Work folder:		cd ./estate
 - `ve scrapy crawl property (spider name)`
 
+Created by : barry

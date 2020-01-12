@@ -33,6 +33,7 @@ class ApartmentPrice(db.Model):
     layout = Column(SmallInteger, nullable=False, default=0, comment='0:unknow 1:南北 2:两南 3:两北')
     rooms = Column(SmallInteger, nullable=False, default=1, comment='room number of apartment')
     region = Column(String(128), nullable=True, comment='location name, like "七宝 陆家嘴 张江"')
+    tax = Column(SmallInteger, nullable=True, comment='0: unknow 1: 5 years')
     detail_url = Column(String(512), nullable=True)
     created_at = Column(TIMESTAMP, nullable=False, server_default=text('CURRENT_TIMESTAMP'))
     updated_at = Column(TIMESTAMP, nullable=False, server_default=text('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))

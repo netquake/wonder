@@ -10,7 +10,7 @@ class PropertyInfoPipeline(object):
         def get_room_number(s):
             i = s.find('室')
             return s[i-1:i] if i > 0 else 0
-
+        print(item)
         new_apartment = ApartmentPrice(
             summary=item['name'],
             key_id=item['key_id'],
@@ -22,6 +22,7 @@ class PropertyInfoPipeline(object):
             layout=ApartmentPrice.get_layout_type_from_string(item['layout']),
             rooms=get_room_number(item['rooms']),
             region=item['region'],
+            tax=item.get('tax'),
             detail_url=item['url']
         )
         db.session.add(
