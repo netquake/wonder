@@ -1,11 +1,9 @@
 from time import sleep
-import sys
 
 from scrapy import signals
 from scrapy.http import HtmlResponse
 from scrapy.http import Request
 
-from jw import app
 from ..utils.chrome_dev_client import ChromeBrowser
 from ..utils.chrome_dev_client import ExclusiveTab
 
@@ -69,10 +67,10 @@ class ExclusiveCDPDownloaderMiddleware(object):
         )
 
         if not self.__valid_page_filter(html_response):
-            app.logger.error(
+            print(
                 '........... get forbidden & retry again............'
             )
-            app.logger.error(request.url)
+            print(request.url)
 
             sleep(60*30)    # sleep 30 minutes
 

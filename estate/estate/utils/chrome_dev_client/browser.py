@@ -11,17 +11,6 @@
     Website still could recognize the access comes from Dev Environment,
         not a normal Browser.
 
-
-    Library supports:
-        Python==3.8
-        Scrapy==2.2.1
-        pychrome==0.2.3
-        SQLAlchemy==1.3.3
-        git+ssh://git@github.com/juwai/python-config.git@master#egg=juwai_config
-        git+ssh://git@github.com/juwai/python-logging.git@master#egg=juwai_logging
-        zerorpc==0.6.1
-
-
     Usage:
         from browser import ChromeBrowser
         from exclusive_tab import ExclusiveTab
