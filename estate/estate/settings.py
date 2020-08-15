@@ -11,9 +11,9 @@ else:
 
 # ## DEFINITIONS OF SPIDERS ###############################
 
-BOT_NAME = 'juwai_spiders'
-SPIDER_MODULES = ['juwai_spiders.spiders']
-NEWSPIDER_MODULE = 'juwai_spiders.spiders'
+BOT_NAME = 'estate'
+SPIDER_MODULES = ['estate.spiders']
+NEWSPIDER_MODULE = 'estate.spiders'
 
 
 # ## DEFINITION OF SPIDER CRAWL RULES ######################

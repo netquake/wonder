@@ -10,7 +10,6 @@ from threading import Lock
 from time import sleep
 
 from .basic_tab import ChromeBasicTab
-from jw import app
 
 
 class _RandomRequestInterval(object):
@@ -33,7 +32,7 @@ class _RandomRequestInterval(object):
         percent = choice(PERCENTAGE_TABLE)
         delay_time_t = download_delay * percent
 
-        app.logger.info(
+        print(
             ' *** download delay time_t: {} ***'.format(delay_time_t)
         )
         sleep(delay_time_t)

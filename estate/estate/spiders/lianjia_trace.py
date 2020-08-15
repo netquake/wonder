@@ -35,6 +35,25 @@ class PropertySummarySpider(Spider):
     name = 'property'
     allowed_domains = ['sh.lianjia.com']
 
+    custom_settings = {
+        'DEFAULT_REQUEST_HEADERS': {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en'
+        },
+        'DOWNLOADER_MIDDLEWARES': {
+            'estate.middlewares.RandomUserAgent': 1
+        },
+        'ITEM_PIPELINES': {
+            'estate.pipelines.PropertyInfoPipeline': 300
+        },
+        'ROBOTSTXT_OBEY': False,
+        'DOWNLOAD_DELAY': 2,
+        'RANDOMIZE_DOWNLOAD_DELAY': True,
+        'COOKIES_ENABLED': False,
+        'TELNETCONSOLE_ENABLED': False,
+        'COMMANDS_MODULE': 'estate.commands'
+    }
+
     village_table = _VillageTable()
     start_urls = village_table.get_urls()
 

@@ -32,7 +32,6 @@ from time import sleep
 from pychrome import Browser
 from pychrome import RuntimeException
 
-from jw import app
 from ...settings import START_DEVTOOL_CHROME_COMMAND
 
 
@@ -65,13 +64,13 @@ class _CDPPortDetector(object):
     def activate_dev_chrome_process(self):
         """Activate chrome process"""
         if self.is_alive():
-            app.logger.info('Chrome dev. process is already started.')
+            print('Chrome dev. process is already started.')
             return
 
-        app.logger.info('Chrome dev. process is starting...')
+        print('Chrome dev. process is starting...')
         import os
         os.system(START_DEVTOOL_CHROME_COMMAND + ' &')
-        app.logger.info('Chrome dev. process is started!')
+        print('Chrome dev. process is started!')
         sleep(10)
 
 

@@ -1,7 +1,6 @@
 from scrapy import Spider
 from scrapy.shell import inspect_response
 
-from jw import app
 from ...settings import INSPECTED_URL_IN_SHELL
 
 
@@ -48,9 +47,9 @@ class JuwaiSpider(Spider):
 
     def print_stat(self):
         """Print stat info."""
-        app.logger.info('*** Objects Count: ***')
+        print('*** Objects Count: ***')
 
         for k, v in self.__obj_count_table.items():
-            app.logger.info(
+            print(
                 'Object Name: {}  & Count: {}'.format(k, v)
             )
