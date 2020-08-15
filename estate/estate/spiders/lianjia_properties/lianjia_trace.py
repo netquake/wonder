@@ -1,7 +1,7 @@
 from scrapy import Spider
 
-from ..items import Property
-from ..items import PropertyLoader
+from .items import Property
+from .items import PropertyLoader
 
 
 class _VillageTable(object):
@@ -44,14 +44,14 @@ class PropertySummarySpider(Spider):
             'estate.middlewares.RandomUserAgent': 1
         },
         'ITEM_PIPELINES': {
-            'estate.pipelines.PropertyInfoPipeline': 300
+            'estate.spiders.lianjia_properties.pipelines.PropertyInfoPipeline': 300
         },
         'ROBOTSTXT_OBEY': False,
         'DOWNLOAD_DELAY': 2,
         'RANDOMIZE_DOWNLOAD_DELAY': True,
         'COOKIES_ENABLED': False,
         'TELNETCONSOLE_ENABLED': False,
-        'COMMANDS_MODULE': 'estate.commands'
+        'COMMANDS_MODULE': 'estate.spiders.lianjia_properties.commands'
     }
 
     village_table = _VillageTable()

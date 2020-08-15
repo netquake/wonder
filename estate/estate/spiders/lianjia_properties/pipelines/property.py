@@ -1,6 +1,6 @@
 from ..persistence import db
 from ..persistence.models import ApartmentPrice
-from ..utils.regex_tool import RegexTool
+from ....utils.regex_tool import RegexTool
 
 
 class PropertyInfoPipeline(object):
