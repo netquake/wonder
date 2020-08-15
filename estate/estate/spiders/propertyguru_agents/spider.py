@@ -72,12 +72,12 @@ class SingaporeAgents(JuwaiSpider):
             'Content-Type': 'text/html'
         },
         'ITEM_PIPELINES': {
-            'juwai_spiders.spiders.propertyguru_agents.pipelines'
+            'estate.spiders.propertyguru_agents.pipelines'
             '.AgentsPipeline': 300,
         },
         'DOWNLOADER_MIDDLEWARES': {
             'scrapy.downloadermiddlewares.httpcache.HttpCacheMiddleware': 100,
-            'juwai_spiders.middlewares.ExclusiveCDPDownloaderMiddleware': 800
+            'estate.middlewares.ExclusiveCDPDownloaderMiddleware': 800
         },
         'ROBOTSTXT_OBEY': False,
         'CONCURRENT_REQUESTS': 1,
