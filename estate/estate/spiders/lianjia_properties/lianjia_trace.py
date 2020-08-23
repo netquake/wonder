@@ -1,7 +1,7 @@
 from scrapy import Spider
 
-from ..items import Property
-from ..items import PropertyLoader
+from .items import Property
+from .items import PropertyLoader
 
 
 class _VillageTable(object):
@@ -34,6 +34,25 @@ class PropertySummarySpider(Spider):
     """
     name = 'property'
     allowed_domains = ['sh.lianjia.com']
+
+    custom_settings = {
+        'DEFAULT_REQUEST_HEADERS': {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en'
+        },
+        'DOWNLOADER_MIDDLEWARES': {
+            'estate.middlewares.RandomUserAgent': 1
+        },
+        'ITEM_PIPELINES': {
+            'estate.spiders.lianjia_properties.pipelines.PropertyInfoPipeline': 300
+        },
+        'ROBOTSTXT_OBEY': False,
+        'DOWNLOAD_DELAY': 2,
+        'RANDOMIZE_DOWNLOAD_DELAY': True,
+        'COOKIES_ENABLED': False,
+        'TELNETCONSOLE_ENABLED': False,
+        'COMMANDS_MODULE': 'estate.spiders.lianjia_properties.commands'
+    }
 
     village_table = _VillageTable()
     start_urls = village_table.get_urls()

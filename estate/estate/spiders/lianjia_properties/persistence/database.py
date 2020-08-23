@@ -3,7 +3,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 
-from ..settings import ESTATE_DB_CONNECTION_CONFIG
+
+ESTATE_DB_CONNECTION_CONFIG = 'mysql+pymysql://root:sa_1234567@127.0.0.1:3306/wonder?use_unicode=1'
 
 
 class MySqlEngine(object):
